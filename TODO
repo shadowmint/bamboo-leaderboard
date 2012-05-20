@@ -1,0 +1,6 @@
+TODO:
+
+- Update docs about installing and building a plugin binary.
+- Add back in the 'latest point changes' to the leaderboard.
+- Add option to disable the user admin page.
+- Clean up the post build action handler.

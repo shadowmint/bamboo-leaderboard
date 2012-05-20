@@ -1,0 +1,1 @@
+[@ww.textfield labelKey="au.net.iinet.plugins.say" name="say" required='true'/]

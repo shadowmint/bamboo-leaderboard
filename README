@@ -1,0 +1,43 @@
+This is a continuous integration plugin for Atlassian Bamboo. 
+
+It provides a better visualization for user commit and testing history than
+the standard 'users' page.
+
+It was created as part of the May 2012 Fedex Day at iiNet and kindly donated
+as open source so we can spread the goodness around!
+
+Quickstart for hacking:
+
+1. Download the atlassian sdk into ~/atlas
+https://developer.atlassian.com/display/DOCS/Installing+the+Atlassian+Plugin+SDK
+
+2. Go into the source folder and run the application
+cd ~/bamboo-leaderboard
+~/atlas/bin/atlas-run 
+
+3. Open a new tab and start the cli
+cd ~/bamboo-leaderboard
+~/atlas/bin/atlas-cli
+
+4. Generate an eclipse project
+cd ~/bamboo-leaderboard
+~/atlas/bin/atlas-mvn eclipse:eclipse
+
+5. Open eclipse and import the project in ~/bamboo-leaderboard
+
+6. Jump into the cli and install the plugin by running 'pi'
+
+7. Hack away in eclipse! 
+
+8. Reload the plugin.
+In the cli run 'pi' (plugin install)
+Open the localhost dev: http://localhost:6990/bamboo/
+Shift reload to reload the plugin 
+
+9. Checkout the leaderboard!
+http://localhost:6990/bamboo/plugins/servlet/board
+http://localhost:6990/bamboo/plugins/servlet/board/home/user
+   
+10. Install the actual plugin on a live bamboo server~
+TODO --> Just build and copy the files.
+

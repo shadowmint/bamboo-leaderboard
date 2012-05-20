@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+  </plugin-info>
+
+  <!-- internationalize your plugin -->
+  <resource type="i18n" name="au.net.iinet.plugins language" location="english"/>
+  <resource type="i18n" name="i18n" location="atlassian-plugin"/>
+
+  <!-- Tab link to servlet -->
+  <web-item name="Leaderboard web item" i18n-name-key="leaderboard-web-item.name" key="leaderboard-web-item" section="system.dashboard/dashboard" weight="1000">
+    <description key="leaderboard-web-item.description">Leaderboard servlet link</description>
+    <label key="leaderboard-web-item.label"/>
+    <link linkId="leaderboard-web-item-link">/plugins/servlet/board/home</link>
+  </web-item>
+
+  <!-- Main servlet -->
+  <servlet name="Leaderboard Servlet" i18n-name-key="leaderboard-servlet.name" key="leaderboard-servlet" class="au.net.iinet.plugins.servlet.LeaderboardServlet">
+    <description key="leaderboard-servlet.description">Leaderboard servlet</description>
+    <url-pattern>/board*</url-pattern>
+  </servlet>
+
+  <!-- Active object configuration -->
+  <ao key="ao-module">
+    <description>Active object configuration</description>
+    <entity>au.net.iinet.plugins.servlet.model.db.User</entity>
+  </ao>
+
+  <!-- Active object service injection -->
+  <component-import key="ao" name="Active Objects service" interface="com.atlassian.activeobjects.external.ActiveObjects">
+    <description>Component to access Active Objects functionality from the plugin</description>
+  </component-import>
+
+  <!-- Post build step -->
+  <postJobAction key="leaderboardBuildPostAction" class="au.net.iinet.plugins.build.LeaderboardBuildPostAction">
+    <description>Update the build status</description>
+    <skipIfFailed>false</skipIfFailed>
+  </postJobAction>
+
+</atlassian-plugin>

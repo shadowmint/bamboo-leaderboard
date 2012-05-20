@@ -1,0 +1,127 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>-</title>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js'></script>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+<style type="text/css">
+body {
+	background-image: url('/bamboo/plugins/servlet/board/home/img/?id=bg.jpg');
+	background-attachment: fixed;
+	background-repeat: repeat-x
+	background-color: #000000;
+  font-family: 'Droid Sans', sans-serif; 
+  font-size: 12px;
+	text-align: center;
+	color: #ffffff;
+}
+#container {
+	width: 960px;
+	overflow: auto;
+	margin: 10px auto 10px auto;
+}
+#top10 {
+	float: left;
+}
+#bottom10 {
+	float: right;
+}
+.panel {
+	width: 470px;
+	position: relative;
+	border: 1px solid black;
+	background-image: url('/bamboo/plugins/servlet/board/home/img/?id=panel-bg.png');
+	background-repeat: repeat;
+	text-align: left;
+}
+
+h1, h2 {
+	color: #ffffff;
+}
+h1 {
+	font-size: 26px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	text-align: center;
+}
+h2 {
+	font-size: 20px;
+	text-transform: uppercase;
+	text-align: center;
+}
+dl {
+	font-weight: bold;
+	overflow: hidden;
+}
+dt {
+	display: inline-block;
+	width: 82px;
+	height: 57px;
+	background-repeat: no-repeat;
+	font-size: 12px;
+	text-align: center;
+	margin-left: 20px;
+}
+dt span.score {
+  display: inline-block;
+	margin-top: 24px;
+	font-size: 14px;
+}
+dd span.name {
+	font-size: 14px;
+	display: inline-block;
+}
+dd span.tag {
+  font-weight: normal !important;
+  display: inline-block;
+  margin-left: 6px;
+}
+#bottom10 dd span.name {
+	margin-left: 10px;
+}
+#top10 dt { background-image: url('/bamboo/plugins/servlet/board/home/img/?id=cat.png'); }
+#bottom10 dt { background-image: url('/bamboo/plugins/servlet/board/home/img/?id=fish.png'); }
+dd {
+	font-size: 11px;
+	position: relative;
+	top: -32px;
+	left: 70px;
+	position: inline;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Bamboo Cat Leaderboard</h1>
+
+<div id="container">
+
+	<div id="top10" class="panel">
+    
+    	<h2>Top Cats</h2>
+		   <dl>
+	        #foreach ($user in $Model.top) 
+        	  <dt><span class="score">${user.points}</span></dt>
+            <dd><span class="name">${user.name}</span><span class="tag">(${user.tag})</span></dd>
+	        #end
+        </dl>
+    </div>
+    
+    <div id="bottom10" class="panel">
+    
+    	<h2>Strays</h2>
+    	  <dl>
+	        #foreach ($user in $Model.bottom) 
+        	  <dt><span class="score">${user.points}</span></dt>
+            <dd><span class="name">${user.name}</span><span class="tag">(${user.tag})</span></dd>
+	        #end
+	      </dl>
+    </div>
+
+</div>
+
+</body>
+</html>

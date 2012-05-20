@@ -1,0 +1,148 @@
+<html>
+  <head>
+    <title>-</title>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js'></script>
+	  <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+  <style>
+    body {
+      font-family: 'Droid Sans', sans-serif; 
+      font-size: 10px;
+      font-color: #333;
+      background: #fff;
+    }
+    h1 {
+      font-size: 14px;
+      font-weight: bold;
+      margin: 0px 0px 4px;
+    }
+    table {
+      width: 100%;
+    }
+    .message {
+      padding: 5px;
+      margin: 20px 20px 20px 0px;
+      border: 1px solid #efefef;
+      border-radius: 5px;
+      background: #efefef;
+      font-size: 12px;
+    }
+    .user-icon {
+    	width: 40px;
+    	height: 40px;
+    }
+    .user-id {
+    	color: #33f;
+    }
+    td {
+    	vertical-align: middle;
+    }
+  </style>
+  </head>
+  <body>
+
+    mode: $Model.mode 
+    
+    #if ($Model.message != "") 
+    
+      <div class="message">$Model.message</div>
+    
+    #end
+    
+    #if ($Model.mode == "Default") 
+    
+      #* Add user *#
+      <div>
+        <h1>Add user</h1>
+        <form action="" method="POST">
+          <input type="hidden" name="action" value="insert"/>
+          <input type="text" name="email" value="email"/>
+          <input type="text" name="name" value="name"/>
+          <input type="text" name="icon" value="icon"/>
+          <input type="text" name="points" value="points"/>
+          <input type="submit"/>
+        </form>
+      </div>
+      
+      #* Query user *#
+      <div>
+        <h1>Query user</h1>
+        <form action="" method="POST" id="form_query">
+          <input type="hidden" name="action" value="query"/>
+          <input type="text" name="email" value="email" id="form_query_email"/>
+          <input type="submit"/>
+        </form>
+       </div>
+       
+      #* Delete user *#
+      <div>
+        <h1>Delete user</h1>
+        <form action="" method="POST">
+          <input type="hidden" name="action" value="delete"/>
+          <input type="text" name="email" value="email"/>
+          <input type="submit"/>
+        </form>
+       </div>
+      
+    #end
+     
+    #if ($Model.mode == "Query") 
+     
+      #* Modify user *#
+      <div>
+        <h1>Change user</h1>
+        <form action="" method="POST">
+          <input type="hidden" name="action" value="update"/>
+          <input type="text" name="email" value="$Model.user.email"/>
+          <input type="text" name="name" value="$Model.user.name"/>
+          <input type="text" name="icon" value="$Model.user.icon"/>
+          <input type="text" name="points" value="$Model.user.points"/>
+          <input type="submit"/>
+        </form>
+      </div>
+      
+    #end
+      
+    <table>
+      <tr>
+        <td>
+          <h1>Top users</h1>
+          <div>
+          	<table>
+	            #foreach ($user in $Model.top) 
+	            	<tr>
+		              <td><img alt="?" src="${user.icon}" class="user-icon"/></td>
+		              <td><span class="user-id">${user.email}</span></td>
+		              <td>${user.name}</td> 
+		              <td><b>${user.points}</b></td>
+	            	</tr>
+	            #end
+          	</table>
+          </div>
+        </td>
+        <td>
+          <h1>Bottom users</h1>
+          <div>
+          	<table>
+	            #foreach ($user in $Model.bottom) 
+	            	<tr>
+		              <td><img alt="?" src="${user.icon}" class="user-icon"/></td>
+		              <td><span class="user-id">${user.email}</span></td>
+		              <td>${user.name}</td> 
+		              <td><b>${user.points}</b></td>
+	            	</tr>
+	            #end
+	          </table>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <script>
+    	$(".user-id").click(function(event) {
+        var id = $(event.target).text();
+        $("#form_query_email").val(id);
+        $("#form_query").submit();
+    	});
+    </script>
+  </body>
+</html>
