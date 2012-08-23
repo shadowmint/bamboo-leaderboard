@@ -1,1 +1,6 @@
 This is a simple test project to test for breaking tests and things.
+
+To configure in bamboo do it as:
+
+      Run command: /usr/bin/ant test (WD: test-project)
+Parse result file: test-project/TEST-com.test.MyTest.xml

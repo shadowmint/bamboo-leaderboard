@@ -30,6 +30,6 @@ public class MyTest {
 
   @Test
   public void testSomething2() {
-    assertTrue(false);
+    assertTrue(true);
   }
 }
