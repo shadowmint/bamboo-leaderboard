@@ -1,0 +1,35 @@
+<project default="all">
+  <property name="tst-dir" location="test-src" />
+  <property name="TALK" value="false" />
+
+  <path id="classpath.base">
+  </path>
+  <path id="classpath.test">
+    <pathelement location="${tst-dir}/../lib/junit.jar" />
+    <pathelement location="${tst-dir}" />
+    <path refid="classpath.base" />
+  </path>
+
+  <target name="compile-test">
+    <javac srcdir="${tst-dir}" verbose="${TALK}">
+      <classpath refid="classpath.test"/>
+    </javac>
+  </target>
+
+  <target name="clean-compile-test">
+    <delete verbose="${TALK}">
+      <fileset dir="${tst-dir}" includes="**/*.class" />
+    </delete>
+  </target>
+
+  <target name="test" depends="compile-test">
+    <junit>
+      <classpath refid="classpath.test" />
+      <formatter type="brief" usefile="false" />
+      <test name="com.test.MyTest" />
+    </junit>
+  </target>
+
+  <target name="all" depends="test" />
+  <target name="clean" depends="clean-compile-test" />
+</project>
